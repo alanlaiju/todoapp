@@ -1,21 +1,78 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-  <form method="POST">
-  {% csrf_token %}  
-  <label>Name:</label>
-  <input type="text" name="taskname" value="{{a.taskname}}"><br><br>
-  <label> Date:</label>
-  <input type="date" name="taskdate"
-         value="{{ a.taskdate|date:'Y-m-d'}}"><br><br>
-         <button type="submit">Update</button>
 
-  </form>
+    <div class="container">
+
+        <div class="todo-card">
+
+            <h1>My Todo List</h1>
+            <p class="subtitle">Manage your daily tasks efficiently</p>
+
+            <form method="POST" class="todo-form">
+                {% csrf_token %}
+
+                <input type="text" name="task-name" placeholder="Enter task name" required>
+
+                <input type="date" name="task-date" required>
+
+                <button type="submit">Add Task</button>
+
+            </form>
+
+        </div>
+
+        <div class="tasks-container">
+
+            {% for i in item %}
+
+            <div class="task-item">
+
+                <div class="task-details">
+                    <h3>{{ i.taskname }}</h3>
+                    <p>📅 {{ i.taskdate }}</p>
+                </div>
+
+                <div class="task-actions">
+
+                    <!-- UPDATE BUTTON -->
+                    <form action="{% url 'update' i.id %}" method="GET">
+                        <button type="submit" class="update-btn">
+                            Update
+                        </button>
+                    </form>
+
+                    <!-- DELETE BUTTON -->
+                    <form action="{% url 'delete' i.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-btn">
+                            Delete
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="empty-state">
+                <p>No tasks available. Add your first task!</p>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
 
 </body>
 </html>

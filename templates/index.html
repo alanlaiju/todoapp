@@ -1,30 +1,84 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
 
-  <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
-
 <body>
-  <form method="POST">
-    {% csrf_token %}
-    <input placeholder="Enter Name" type="text" id="Name" name="task-name">
-    <input type="date" id="date" name="task-date">
-    <button style="color: rgb(0, 0, 0);"> click me</button>
-  </form>
-  <div>
-    {% for i in item %}
-    <p> {{i.taskname}}</p>
-    <p> {{i.taskdate}}</p>
-    <button style="color: limegreen;"> <a href="{% url 'delete' i.id %}">Delete</a></button>
-    <button style="color: limegreen;"> <a href="{% url 'update' i.id %}">update</a></button>
-    {% endfor %}
-  </div>
-</body>
 
+    <div class="container">
+
+        <!-- TOP CARD -->
+        <div class="todo-card">
+
+            <h1>My Todo List</h1>
+            <p class="subtitle">Manage your daily tasks efficiently</p>
+
+            <form method="POST" class="todo-form">
+                {% csrf_token %}
+
+                <input
+                    type="text"
+                    name="task-name"
+                    placeholder="Enter task name"
+                    required
+                >
+
+                <input
+                    type="date"
+                    name="task-date"
+                    required
+                >
+
+                <button type="submit">
+                    Add Task
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- TASK LIST -->
+        <div class="tasks-container">
+
+            {% for i in item %}
+
+            <div class="task-item">
+
+                <div class="task-details">
+                    <h3>{{ i.taskname }}</h3>
+                    <p>📅 {{ i.taskdate }}</p>
+                </div>
+
+                <div class="task-actions">
+
+                    <a href="{% url 'update' i.id %}" class="update-btn">
+                        Update
+                    </a>
+
+                    <a href="{% url 'delete' i.id %}" class="delete-btn">
+                        Delete
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="empty-state">
+                <p>No tasks available. Add your first task!</p>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</body>
 </html>

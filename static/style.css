@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background: radial-gradient(circle at top, #111 0%, #000 100%);
+    min-height:100vh;
+    color:#fff;
+}
+
+/* CONTAINER */
+.container{
+    max-width:900px;
+    margin:50px auto;
+    padding:0 20px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* FADE IN */
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* GOLD CARD */
+.todo-card{
+    background:linear-gradient(145deg, #111, #000);
+    border:1px solid rgba(255, 215, 0, 0.25);
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 0 25px rgba(255, 215, 0, 0.08);
+    margin-bottom:25px;
+    animation: slideUp 0.6s ease;
+}
+
+/* SLIDE ANIMATION */
+@keyframes slideUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* HEADINGS */
+h1{
+    text-align:center;
+    color:#ffd700;
+    font-size:28px;
+    margin-bottom:8px;
+    letter-spacing:1px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#c0c0c0;
+    margin-bottom:25px;
+    font-size:14px;
+}
+
+/* FORM */
+form{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+/* INPUTS */
+input{
+    padding:12px 14px;
+    border-radius:10px;
+    border:1px solid rgba(255,215,0,0.3);
+    background:#0b0b0b;
+    color:#fff;
+    outline:none;
+    transition:0.3s;
+}
+
+input:focus{
+    border-color:#ffd700;
+    box-shadow:0 0 10px rgba(255,215,0,0.4);
+    transform:scale(1.02);
+}
+
+/* BUTTON */
+button{
+    padding:12px 14px;
+    background:linear-gradient(90deg, #ffd700, #b8860b);
+    color:#000;
+    border:none;
+    border-radius:10px;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
+    letter-spacing:0.5px;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px rgba(255,215,0,0.5);
+}
+
+/* TASK LIST */
+.tasks-container{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+/* TASK CARD */
+.task-item{
+    background:#0a0a0a;
+    border:1px solid rgba(255,215,0,0.15);
+    padding:18px 20px;
+    border-radius:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition:0.3s;
+    animation: fadeIn 0.5s ease;
+}
+
+.task-item:hover{
+    transform:translateY(-4px);
+    border-color:#ffd700;
+    box-shadow:0 0 20px rgba(255,215,0,0.15);
+}
+
+/* TEXT */
+.task-details h3{
+    font-size:16px;
+    color:#ffd700;
+}
+
+.task-details p{
+    font-size:13px;
+    color:#aaa;
+    margin-top:4px;
+}
+
+/* ACTION BUTTONS */
+.task-actions{
+    display:flex;
+    gap:10px;
+}
+
+/* BUTTONS */
+.update-btn,
+.delete-btn{
+    padding:8px 14px;
+    border-radius:8px;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+    transition:0.3s;
+    color:#000;
+}
+
+/* UPDATE */
+.update-btn{
+    background:#ffd700;
+}
+
+.update-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 10px rgba(255,215,0,0.4);
+}
+
+/* DELETE */
+.delete-btn{
+    background:#ff3b3b;
+    color:#fff;
+}
+
+.delete-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 10px rgba(255,59,59,0.4);
+}
+
+/* EMPTY STATE */
+.empty-state{
+    text-align:center;
+    color:#aaa;
+    padding:25px;
+    border:1px dashed rgba(255,215,0,0.3);
+    border-radius:14px;
+    background:#0a0a0a;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+    .task-item{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .task-actions{
+        width:100%;
+    }
+
+    .update-btn,
+    .delete-btn{
+        flex:1;
+        text-align:center;
+    }
+}
